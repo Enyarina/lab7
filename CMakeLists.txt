@@ -25,5 +25,4 @@ include_directories(${Boost_INCLUDE_DIRS})
 #target_link_libraries(tests GTest::main 7_lab)
 target_link_libraries(7_lab Boost::log Boost::thread)
 target_link_libraries(7_lab ${Boost_LIBRARIES})
-link_directories("${Boost_Path}/installed/lib")
-        
+link_directories("${Boost_Path}/installed/lib"))
