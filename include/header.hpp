@@ -29,7 +29,7 @@ static const uint32_t base_time = 100000000;//чтобы создавать ра
 static const uint32_t additional_time = 300000000;//
 static const uint32_t buf_size = 512;//размер буфера - макс размер, который можно получить от клиента
 
-using namespace boost::asio;
+namespace assio = boost::asio;
 using std::exception;
 namespace logging = boost::log;
 

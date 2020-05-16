@@ -2,8 +2,8 @@
 #include <header.hpp>
 class  talk_to_client{
 public:
-    explicit talk_to_client(io_service &service){
-        socket = socket_ptr(new ip::tcp::socket(service));
+    explicit talk_to_client(assio::io_service &service){
+        socket = socket_ptr(new assio::ip::tcp::socket(service));
         name = std::string("");
     }
     socket_ptr sock(){return socket;}
@@ -88,7 +88,7 @@ public:
         mutex_for_client_list.unlock();
 
         clients_names += '\n';
-        sock->write_some(buffer(clients_names));//сообщение для клиента
+        sock->write_some(assio::buffer(clients_names));//сообщение для клиента
     }
     void work_with_client(uint32_t client_ID)
     {
@@ -100,12 +100,12 @@ public:
                                                       rand() % base_time + additional_time});
 
                 char data[512];
-                size_t len = sock->read_some(buffer(data)); //получение информации от клиента
+                size_t len = sock->read_some(assio::buffer(data)); //получение информации от клиента
 
                 if (client_info_list[client_ID].suicide){
                     BOOST_LOG_TRIVIAL(warning) << "Killing session with: "
                                                << client_list[client_ID]->name;
-                    sock->write_some(buffer("too_late\n")); //сообщение для клиента
+                    sock->write_some(assio::buffer("too_late\n")); //сообщение для клиента
                     return;
                 }
 
@@ -125,7 +125,7 @@ public:
                 if (client_list[client_ID]->name == std::string("")) {
                     client_list[client_ID]->name = data; //присвоение имени полученного значения
 
-                    sock->write_some(buffer("login_ok\n")); //сообщение для клиента
+                    sock->write_some(assio::buffer("login_ok\n")); //сообщение для клиента
 
                     BOOST_LOG_TRIVIAL(info) << "Client: "
                                             << client_list[client_ID]->name
@@ -141,12 +141,12 @@ public:
                     client_info_list[client_ID].time_last_ping = time(NULL);
                 } else if (read_msg == std::string("ping")) { //запрос на пинг
                     if (client_info_list[client_ID].client_list_changed) {
-                        sock->write_some(buffer("client_list_changed\n"));
+                        sock->write_some(assio::buffer("client_list_changed\n"));
                         BOOST_LOG_TRIVIAL(info) << "Client:"
                                                 << client_list[client_ID]->name
                                                 << "pinged and client list was changed";
                     } else {
-                        sock->write_some(buffer("ping_ok\n"));
+                        sock->write_some(assio::buffer("ping_ok\n"));
                         BOOST_LOG_TRIVIAL(info) << "Client: "
                                                 << client_list[client_ID]->name
                                                 << "successfully pinged.";
@@ -174,8 +174,8 @@ public:
         }
     }
     void start(){
-        ip::tcp::endpoint ep(ip::tcp::v4(), Port); // listen on 2002 (хранит адреса и порт, откуда ждать соединения)
-        ip::tcp::acceptor acc(service, ep);//принимает клиента, открывает соединение
+        assio::ip::tcp::endpoint ep(assio::ip::tcp::v4(), Port); // listen on 2002 (хранит адреса и порт, откуда ждать соединения)
+        assio::ip::tcp::acceptor acc(service, ep);//принимает клиента, открывает соединение
 
         Threads.push_back(boost::thread(boost::bind(&MyServer::kick_the_client,
                                                     this)));//закидываем в конец вектора потоков поток - связки убийцы получателя с данной локальной конечной точкой
@@ -208,7 +208,7 @@ public:
     }
 
 private:
-    io_service service; //Boost.Asio использует io_service для общения с сервисом ввода/вывода операционной системы.
+    assio::io_service service; //Boost.Asio использует io_service для общения с сервисом ввода/вывода операционной системы.
     std::mutex mutex_for_client_list;
     std::vector<std::shared_ptr<talk_to_client>> client_list;
     std::vector<client_info> client_info_list;
