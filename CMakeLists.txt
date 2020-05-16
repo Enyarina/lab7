@@ -12,7 +12,6 @@ string(APPEND CMAKE_CXX_FLAGS " -g -Wall -DBOOST_LOG_DYN_LINK")
 
 include_directories(include)
 
-hunter_add_package(Boost COMPONENTS thread log)
 find_package(Boost 1.65.1 COMPONENTS REQUIRED thread log log_setup)
 
 add_executable(7_lab
