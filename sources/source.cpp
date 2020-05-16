@@ -1,3 +1,4 @@
+// Copyright 2020 enrina <your_email>
 #include <header.hpp>
 class  talk_to_client{
 public:
@@ -36,10 +37,10 @@ public:
         logging::add_file_log
                 (
                         logging::keywords::file_name = "log_%N.log",
-                        logging::keywords::rotation_size = SIZE_FILE,
-                        logging::keywords::time_based_rotation =
-                                boost::log::sinks::file::rotation_at_time_point{0,
-                                                                                0, 0},
+                        //logging::keywords::rotation_size = SIZE_FILE,
+                        //logging::keywords::time_based_rotation =
+                          //      boost::log::sinks::file::rotation_at_time_point{0,
+                            //                                                    0, 0},
                         logging::keywords::format =
                                 "[%TimeStamp%] [%Severity%] %Message%");
 
@@ -49,7 +50,8 @@ public:
                         = "[%TimeStamp%] [%Severity%]: %Message%");
         logging::add_common_attributes();
     }
-    void kick_the_client(){ //уничтожает поток, если не было ping в течение critical time
+    void kick_the_client(){ //уничтожает поток,
+        // если не было ping в течение critical time
         while (true){
             std::this_thread::__sleep_for(std::chrono::seconds{0},
                                           std::chrono::nanoseconds{rand() % base_time + additional_time});
@@ -94,7 +96,7 @@ public:
                                               std::chrono::nanoseconds{
                                                       rand() % base_time + additional_time});
 
-                char data[buf_size];
+                char data[512];
                 size_t len = sock->read_some(buffer(data)); //получение информации от клиента
 
                 if (client_info_list[client_ID].suicide){
@@ -111,12 +113,11 @@ public:
                         read_msg.assign(read_msg, 0, read_msg.rfind('\n')); //1-исходная строка, 2-позиция, с которой
                         //начинается копирование, 3-количество символов для копирования
                         //пришедший от клюента запрос обрезается до символа \n
-                    }
-                    else
+                    } else
                         throw std::logic_error("Received wrong message");
+                } else {
+                    throw std::logic_error("Received empty message"); // так  везде пробел фигурная скобка, как здесь
                 }
-                else
-                    throw std::logic_error("Received empty message");
 
                 if (client_list[client_ID]->name == std::string("")) {
                     client_list[client_ID]->name = data; //присвоение имени полученного значения

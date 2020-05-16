@@ -1,4 +1,4 @@
-// Copyright 2019 dimakirol <your_email>
+// Copyright 2020 enrina <your_email>
 
 #ifndef INCLUDE_HEADER_HPP_
 #define INCLUDE_HEADER_HPP_
