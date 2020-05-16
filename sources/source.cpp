@@ -117,24 +117,29 @@ public:
                     if (read_msg.find('\n') != std::string::npos) {
                         read_msg.assign(read_msg, 0, read_msg.rfind('\n'));
                         //1-исходная строка, 2-позиция, с которой
-                        // начинается копирование, 3-количество символов для копирования
+                        // начинается копирование,
+                        // 3-количество символов для копирования
                         //пришедший от клюента запрос обрезается до символа \n
                     } else {
                         throw std::logic_error("Received wrong message");
                     }
                 } else {
-                    throw std::logic_error("Received empty message"); // так  везде пробел фигурная скобка, как здесь
+                    throw std::logic_error("Received empty message");
+                    // так  везде пробел фигурная скобка, как здесь
                 }
 
                 if (client_list[client_ID]->name == std::string("")) {
-                    client_list[client_ID]->name = data; //присвоение имени полученного значения
+                    client_list[client_ID]->name = data;
+                    //присвоение имени полученного значения
 
-                    sock->write_some(assio::buffer("login_ok\n")); //сообщение для клиента
+                    sock->write_some(assio::buffer("login_ok\n"));
+                    //сообщение для клиента
 
                     BOOST_LOG_TRIVIAL(info) << "Client: "
                                             << client_list[client_ID]->name
                                             << " successfully logged in!";
-                } else if (read_msg == std::string("clients")) { //запрос списка клиентов
+                } else if (read_msg == std::string("clients")) {
+                    //запрос списка клиентов
                     BOOST_LOG_TRIVIAL(info) << "Client: "
                                             << client_list[client_ID]->name
                                             << " requested clients list.";
@@ -145,10 +150,12 @@ public:
                     client_info_list[client_ID].time_last_ping = time(NULL);
                 } else if (read_msg == std::string("ping")) { //запрос на пинг
                     if (client_info_list[client_ID].client_list_changed) {
-                        sock->write_some(assio::buffer("client_list_changed\n"));
+                        sock->write_some
+                        (assio::buffer("client_list_changed\n"));
                         BOOST_LOG_TRIVIAL(info) << "Client:"
                                                 << client_list[client_ID]->name
-                                                << "pinged and client list was changed";
+                                                << "pinged and client list "
+                                                << "was changed";
                     } else {
                         sock->write_some(assio::buffer("ping_ok\n"));
                         BOOST_LOG_TRIVIAL(info) << "Client: "
@@ -158,8 +165,8 @@ public:
                     client_info_list[client_ID].time_last_ping = time(NULL);
                 }
                 else {
-                    throw std::logic_error("Received wrong message: "
-                                           + read_msg);
+                    throw std::logic_error
+                    ("Received wrong message: " + read_msg);
                 }
             }
         } catch (std::logic_error const& e){
@@ -172,7 +179,7 @@ public:
                                            << client_list[client_ID]->name;
                 return;
             }
-            else{
+            else {
                 BOOST_LOG_TRIVIAL(warning) << e.what();
             }
         }
