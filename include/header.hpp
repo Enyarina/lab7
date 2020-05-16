@@ -30,6 +30,7 @@ static const uint32_t base_time = 100000000;
 // чтобы понять, как долго к тебе присоединен клиент
 static const uint32_t additional_time = 300000000;//
 static const uint32_t buf_size = 512;
+unsigned now = time(0);
 //размер буфера -
 // макс размер, который можно получить от клиента
 
@@ -37,6 +38,6 @@ namespace assio = boost::asio;
 using std::exception;
 namespace logging = boost::log;
 
-typedef boost::shared_ptr<ip::tcp::socket> socket_ptr;
+typedef boost::shared_ptr<assio::ip::tcp::socket> socket_ptr;
 
 #endif // INCLUDE_HEADER_HPP_

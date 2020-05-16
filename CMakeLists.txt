@@ -16,7 +16,7 @@ find_package(Boost 1.65.1 COMPONENTS REQUIRED thread log log_setup)
 
 add_executable(7_lab
        ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-
+        )
 target_include_directories(7_lab
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
@@ -25,4 +25,4 @@ include_directories(${Boost_INCLUDE_DIRS})
 #target_link_libraries(tests GTest::main 7_lab)
 target_link_libraries(7_lab Boost::log Boost::thread)
 target_link_libraries(7_lab ${Boost_LIBRARIES})
-link_directories("${Boost_Path}/installed/lib"))
+link_directories("${Boost_Path}/installed/lib")
