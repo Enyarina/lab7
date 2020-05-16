@@ -25,9 +25,13 @@
 static const uint32_t SIZE_FILE = 10*1024*1024;
 static const uint32_t Port = 2002;
 static const uint32_t critical_time = 5;
-static const uint32_t base_time = 100000000;//чтобы создавать рандомное время, чтобы понять, как долго к тебе присоединен клиент
+static const uint32_t base_time = 100000000;
+//чтобы создавать рандомное время,
+// чтобы понять, как долго к тебе присоединен клиент
 static const uint32_t additional_time = 300000000;//
-static const uint32_t buf_size = 512;//размер буфера - макс размер, который можно получить от клиента
+static const uint32_t buf_size = 512;
+//размер буфера -
+// макс размер, который можно получить от клиента
 
 namespace assio = boost::asio;
 using std::exception;

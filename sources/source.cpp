@@ -202,7 +202,7 @@ public:
             while (!mutex_for_client_list.try_lock())
                 //пока поток не может захватить mutex, поток спит
                 std::this_thread::sleep_for(
-                        std::chrono::milliseconds(rand()%3+1));
+                        std::chrono::milliseconds(rand_r(&now) % 3 + 1));
             client_list.push_back(client);
             //добавление нового  клиента
             mutex_for_client_list.unlock();
