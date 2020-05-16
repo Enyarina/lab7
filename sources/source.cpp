@@ -79,7 +79,7 @@ public:
 
         while (!mutex_for_client_list.try_lock())
             std::this_thread::sleep_for(
-                    std::chrono::milliseconds(rand()%3+1));
+                    std::chrono::milliseconds(rand_r(&now) % 3 + 1));
 
         for (uint32_t i = 0; i < client_list.size(); ++i){
             clients_names += client_list[i]->name + std::string(" ");
