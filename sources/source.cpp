@@ -40,7 +40,7 @@ public:
                         //logging::keywords::rotation_size = SIZE_FILE,
                         //logging::keywords::time_based_rotation =
                           //      boost::log::sinks::file::rotation_at_time_point{0,
-                            //                                                    0, 0},
+                            // 0, 0},
                         logging::keywords::format =
                                 "[%TimeStamp%] [%Severity%] %Message%");
 
@@ -54,7 +54,7 @@ public:
         // если не было ping в течение critical time
         while (true){
             std::this_thread::__sleep_for(std::chrono::seconds{0},
-                                          std::chrono::nanoseconds{rand() % base_time + additional_time});
+                    std::chrono::nanoseconds{rand() % base_time + additional_time});
 
             if (!client_list.size())
                 continue;
@@ -71,7 +71,9 @@ public:
             }
         }
     }
-    void send_clients_list(socket_ptr sock){ //забирает имена всех клиентов в строку и передает их клиенту, запросившему список
+    void send_clients_list(socket_ptr sock){ //
+        // забирает имена всех клиентов в строку
+        // и передает их клиенту, запросившему список
         std::string clients_names;
 
         while (!mutex_for_client_list.try_lock())
