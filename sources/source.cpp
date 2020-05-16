@@ -163,10 +163,9 @@ public:
                                                 << "successfully pinged.";
                     }
                     client_info_list[client_ID].time_last_ping = time(NULL);
-                }
-                else {
-                    throw std::logic_error
-                    ("Received wrong message: " + read_msg);
+                } else {
+                    throw std::logic_error("Received wrong message: "
+                                           + read_msg);
                 }
             }
         } catch (std::logic_error const& e){
@@ -178,37 +177,48 @@ public:
                 BOOST_LOG_TRIVIAL(warning) << "Killing session with: "
                                            << client_list[client_ID]->name;
                 return;
-            }
-            else {
+            } else {
                 BOOST_LOG_TRIVIAL(warning) << e.what();
             }
         }
     }
     void start(){
-        assio::ip::tcp::endpoint ep(assio::ip::tcp::v4(), Port); // listen on 2002 (хранит адреса и порт, откуда ждать соединения)
-        assio::ip::tcp::acceptor acc(service, ep);//принимает клиента, открывает соединение
+        assio::ip::tcp::endpoint ep(assio::ip::tcp::v4(), Port);
+        // listen on 2002 (хранит адреса и порт, откуда ждать соединения)
+        assio::ip::tcp::acceptor acc(service, ep);
+        //принимает клиента, открывает соединение
 
         Threads.push_back(boost::thread(boost::bind(&MyServer::kick_the_client,
-                                                    this)));//закидываем в конец вектора потоков поток - связки убийцы получателя с данной локальной конечной точкой
+                                                    this)));
+        //закидываем в конец вектора потоков поток -
+        // связки убийцы получателя с данной локальной конечной точкой
         while (true)
         {
-            auto client = std::make_shared<talk_to_client>(service); //создание объекта и выделение памяти под него
-            acc.accept(*(client->sock()));// //блокирует поток и ждет подключения клиента
+            auto client = std::make_shared<talk_to_client>(service);
+            //создание объекта и выделение памяти под него
+            acc.accept(*(client->sock()));
+            //блокирует поток и ждет подключения клиента
 
-            while (!mutex_for_client_list.try_lock())//пока поток не может захватить mutex, поток спит
+            while (!mutex_for_client_list.try_lock())
+                //пока поток не может захватить mutex, поток спит
                 std::this_thread::sleep_for(
                         std::chrono::milliseconds(rand()%3+1));
-            client_list.push_back(client); //добавление нового  клиента
-            mutex_for_client_list.unlock(); //открытие доступа другим потокам
+            client_list.push_back(client);
+            //добавление нового  клиента
+            mutex_for_client_list.unlock();
+            //открытие доступа другим потокам
 
-            client_info new_client;//объявление нового клиента с нулевыми параметрами
+            client_info new_client;
+            //объявление нового клиента с нулевыми параметрами
             new_client.client_list_changed = false;
             new_client.time_last_ping = time(NULL);
             new_client.suicide = false;
 
-            client_info_list.push_back(new_client); //добавление информации о новом клиенте в список
+            client_info_list.push_back(new_client);
+            //добавление информации о новом клиенте в список
             for (uint32_t i = 0; i < client_info_list.size() - 1; ++i){
-                client_info_list[i].client_list_changed = true; //установка параметра изменения для каждого в списке
+                client_info_list[i].client_list_changed = true;
+                //установка параметра изменения для каждого в списке
             }
 
             Threads.push_back(boost::thread(
@@ -219,7 +229,8 @@ public:
     }
 
 private:
-    assio::io_service service; //Boost.Asio использует io_service для общения с сервисом ввода/вывода операционной системы.
+    assio::io_service service; //Boost.Asio use io_service
+    // для общения с сервисом ввода/вывода операционной системы.
     std::mutex mutex_for_client_list;
     std::vector<std::shared_ptr<talk_to_client>> client_list;
     std::vector<client_info> client_info_list;
