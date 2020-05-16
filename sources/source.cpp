@@ -96,16 +96,18 @@ public:
         try {
             while (true) {
                 std::this_thread::__sleep_for(std::chrono::seconds{0},
-                                              std::chrono::nanoseconds{
-                                                      rand() % base_time + additional_time});
+                        std::chrono::nanoseconds{
+                    rand() % base_time + additional_time});
 
                 char data[512];
-                size_t len = sock->read_some(assio::buffer(data)); //получение информации от клиента
+                size_t len = sock->read_some(assio::buffer(data));
+                //получение информации от клиента
 
                 if (client_info_list[client_ID].suicide){
                     BOOST_LOG_TRIVIAL(warning) << "Killing session with: "
                                                << client_list[client_ID]->name;
-                    sock->write_some(assio::buffer("too_late\n")); //сообщение для клиента
+                    sock->write_some(assio::buffer("too_late\n"));
+                    //сообщение для клиента
                     return;
                 }
 
@@ -113,11 +115,13 @@ public:
 
                 if (len > 0) { //если результат find существует
                     if (read_msg.find('\n') != std::string::npos) {
-                        read_msg.assign(read_msg, 0, read_msg.rfind('\n')); //1-исходная строка, 2-позиция, с которой
-                        //начинается копирование, 3-количество символов для копирования
+                        read_msg.assign(read_msg, 0, read_msg.rfind('\n'));
+                        //1-исходная строка, 2-позиция, с которой
+                        // начинается копирование, 3-количество символов для копирования
                         //пришедший от клюента запрос обрезается до символа \n
-                    } else
+                    } else {
                         throw std::logic_error("Received wrong message");
+                    }
                 } else {
                     throw std::logic_error("Received empty message"); // так  везде пробел фигурная скобка, как здесь
                 }
