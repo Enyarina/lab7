@@ -54,7 +54,8 @@ public:
         // если не было ping в течение critical time
         while (true){
             std::this_thread::__sleep_for(std::chrono::seconds{0},
-                    std::chrono::nanoseconds{rand() % base_time + additional_time});
+                    std::chrono::nanoseconds
+                    {rand() % base_time + additional_time});
 
             if (!client_list.size())
                 continue;
