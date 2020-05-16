@@ -1,76 +1,14 @@
-/home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/kirill/Documents/4_semestr/-lab-07-asio-server-
-CMake Warning at /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1144 (message):
-  New Boost version may have incorrect or missing dependencies and imported
-  targets
-Call Stack (most recent call first):
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1266 (_Boost_COMPONENT_DEPENDENCIES)
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1904 (_Boost_MISSING_DEPENDENCIES)
-  CMakeLists.txt:20 (find_package)
+/home/enrina/Documents/clion-2019.2.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/enrina/Desktop/laby/-lab-07-asio-server-
+CMake Error at CMakeLists.txt:16 (include):
+  include could not find load file:
+
+    tools/gate/cmake/HunterGate.cmake
 
 
-CMake Warning at /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1144 (message):
-  New Boost version may have incorrect or missing dependencies and imported
-  targets
-Call Stack (most recent call first):
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1266 (_Boost_COMPONENT_DEPENDENCIES)
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1904 (_Boost_MISSING_DEPENDENCIES)
-  CMakeLists.txt:20 (find_package)
+CMake Error at CMakeLists.txt:18 (HunterGate):
+  Unknown CMake command "HunterGate".
 
 
-CMake Warning at /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1144 (message):
-  New Boost version may have incorrect or missing dependencies and imported
-  targets
-Call Stack (most recent call first):
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1266 (_Boost_COMPONENT_DEPENDENCIES)
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1904 (_Boost_MISSING_DEPENDENCIES)
-  CMakeLists.txt:20 (find_package)
-
-
-CMake Warning at /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1144 (message):
-  New Boost version may have incorrect or missing dependencies and imported
-  targets
-Call Stack (most recent call first):
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1266 (_Boost_COMPONENT_DEPENDENCIES)
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1904 (_Boost_MISSING_DEPENDENCIES)
-  CMakeLists.txt:20 (find_package)
-
-
-CMake Warning at /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1144 (message):
-  New Boost version may have incorrect or missing dependencies and imported
-  targets
-Call Stack (most recent call first):
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1266 (_Boost_COMPONENT_DEPENDENCIES)
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1904 (_Boost_MISSING_DEPENDENCIES)
-  CMakeLists.txt:20 (find_package)
-
-
-CMake Warning at /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1144 (message):
-  New Boost version may have incorrect or missing dependencies and imported
-  targets
-Call Stack (most recent call first):
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1266 (_Boost_COMPONENT_DEPENDENCIES)
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1904 (_Boost_MISSING_DEPENDENCIES)
-  CMakeLists.txt:20 (find_package)
-
-
-CMake Warning at /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1144 (message):
-  New Boost version may have incorrect or missing dependencies and imported
-  targets
-Call Stack (most recent call first):
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1266 (_Boost_COMPONENT_DEPENDENCIES)
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1904 (_Boost_MISSING_DEPENDENCIES)
-  CMakeLists.txt:20 (find_package)
-
-
-CMake Warning at /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1144 (message):
-  New Boost version may have incorrect or missing dependencies and imported
-  targets
-Call Stack (most recent call first):
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1266 (_Boost_COMPONENT_DEPENDENCIES)
-  /home/kirill/Documents/Clion/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/FindBoost.cmake:1904 (_Boost_MISSING_DEPENDENCIES)
-  CMakeLists.txt:20 (find_package)
-
-
--- Configuring done
--- Generating done
--- Build files have been written to: /home/kirill/Documents/4_semestr/-lab-07-asio-server-/cmake-build-debug
+-- Configuring incomplete, errors occurred!
+See also "/home/enrina/Desktop/laby/-lab-07-asio-server-/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/home/enrina/Desktop/laby/-lab-07-asio-server-/cmake-build-debug/CMakeFiles/CMakeError.log".
