@@ -32,6 +32,7 @@ public:
         }
     }
     void log_init(){ 
+        
         boost::log::register_simple_formatter_factory
                 <boost::log::trivial::severity_level, char>("Severity");
         logging::add_file_log
